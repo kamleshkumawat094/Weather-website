@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './App.css'
-import Home from "./components/Home";
+import Home from "./components/home";
 import Search from './components/Search'
-import { RouterProvider, createBrowserRouter, Navigate} from "react-router-dom";
+import { RouterProvider, createBrowserRouter} from "react-router-dom";
 import Navbar from './components/Navbar';
 import Forecast from './components/Forecast';
 import Contect from './components/Contect';

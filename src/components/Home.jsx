@@ -3,7 +3,7 @@ import Forecast from "./Forecast";
 import { useWeather } from "../WeatherContext";
 import { motion } from "framer-motion";
 
-const home = () => {
+const Home = () => {
   const { weather, city, error } = useWeather();
   const navigate = useNavigate();
   console.log(weather);
@@ -160,4 +160,4 @@ const home = () => {
   );
 };
 
-export default home;
+export default Home;
