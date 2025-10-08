@@ -103,7 +103,7 @@ const Home = () => {
                 </p>
               </div>
 
-              <div className="flex overflow-x-auto space-x-2 mt-6 scrollbar cursor-pointer">
+              <div className=" scroll-container flex overflow-x-auto space-x-2 mt-6 scrollbar cursor-pointer">
                 {(() => {
                   const hours = [
                     ...weather.forecast.forecastday[0].hour,

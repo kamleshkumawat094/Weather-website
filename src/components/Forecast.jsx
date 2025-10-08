@@ -31,7 +31,7 @@ backdrop-blur-md pb-[100px] text-black max-w-[450px] mx-auto overflow-y-auto h-[
           })}
         </p>
       </motion.div>
-      <div className="flex overflow-x-auto space-x-1 mt-6 scrollbar cursor-pointer">
+      <div className="scroll-container flex overflow-x-auto space-x-1 mt-6 scrollbar cursor-pointer">
         {(() => {
           const hours = [
             ...weather.forecast.forecastday[0].hour,
@@ -54,7 +54,7 @@ backdrop-blur-md pb-[100px] text-black max-w-[450px] mx-auto overflow-y-auto h-[
             ease: "easeOut",
           },
         }}
-              className="min-w-[100px] backdrop-blur-md bg-white/10 border border-white/20 rounded-xl shadow-lg p-3 text-center"
+              className=" min-w-[100px] backdrop-blur-md bg-white/10 border border-white/20 rounded-xl shadow-lg p-3 text-center"
             >
               <p>{hour.time.split(" ")[1]}</p>
               <img src={hour.condition.icon} alt="icon" className="mx-auto" />
