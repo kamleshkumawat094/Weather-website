@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import Home from "./components/Home";
+import Home from './components/home';
 import Search from './components/Search'
 import { RouterProvider, createBrowserRouter} from "react-router-dom";
 import Navbar from './components/Navbar';
