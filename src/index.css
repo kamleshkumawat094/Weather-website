@@ -66,3 +66,108 @@
     animation-iteration-count: 1;
   }
 }
+
+.hour-card {
+
+  opacity: 0;
+  transform: translateX(30px);
+  animation: fadeInSlide 0.4s ease-out forwards;
+  animation-delay: calc(var(--i) * 0.05s);
+}
+
+@keyframes fadeInSlide {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.forecast-card {
+
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInSlide 0.4s ease-out forwards;
+  animation-delay: calc(var(--i) * 0.05s);
+}
+
+@keyframes fadeInSlide {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scale-fade {
+  opacity: 0;
+  transform: scale(0.95);
+  animation: fadeScaleIn 0.5s ease-out forwards;
+}
+
+
+@keyframes fadeScaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: scaleFadeIn 0.5s ease-out forwards;
+}
+
+@keyframes scaleFadeIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+.suggestions-list {
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: listFadeIn 0.3s ease-out forwards;
+}
+@keyframes listFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.suggestion-item {
+  opacity: 0;
+  transform: translateY(-5px);
+  animation: itemFadeIn 0.3s ease-out forwards;
+  animation-delay: calc(var(--i) * 0.03s);
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 0.3rem;
+}
+@keyframes itemFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.suggestion-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: scale(1.02);
+}
+
+

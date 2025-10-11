@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useWeather } from "../WeatherContext";
 import { AiOutlineSearch } from "react-icons/ai";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 const Search = () => {
   const [search, setSearch] = useState("");
@@ -59,38 +59,34 @@ const handleSuggestionClick = (cityName) => {
 
 
   return (
-   <div className="relative max-w-[450px] mx-auto">
-     <div className="text-2xl text-black p-[20px] pt-7 bg-gradient-to-b from-[rgba(40,57,209,0.85)] via-[rgba(68,167,216,0.54)] to-[rgb(64,0,255)] backdrop-blur-md h-[100dvh]   flex place-content-between">
+   <div className="relative max-w-[450px] mx-auto ">
+     <div className=" text-2xl text-black p-[20px] pt-7 bg-gradient-to-b from-[rgba(40,57,209,0.85)] via-[rgba(68,167,216,0.54)] to-[rgb(64,0,255)] backdrop-blur-md h-[100dvh]   flex place-content-between">
       <input
         type="search"
         value={search}
         placeholder="Search City"
         onKeyDown={handleKey}
         onChange={handleChange}
-        className=" border border-white/20 rounded-3xl shadow-lg bg-white/10  placeholder-gray-700 text-black focus:bg-white/20 focus:outline-none h-9 max-w-[85%] p-4 placeholder:text-gray"
+        className="form-once border border-white/20 rounded-3xl shadow-lg bg-white/10  placeholder-gray-700 text-black focus:bg-white/20 focus:outline-none h-9 max-w-[85%] p-4 placeholder:text-gray"
       />
-      <button className=" text-white h-9" onClick={handleSubmit}>
+      <button className=" text-white h-9 form-once" onClick={handleSubmit}>
         <AiOutlineSearch size={33}/>
       </button>
       
     </div>
-     <AnimatePresence>
+     
     {suggestions.length >0 && (
-      <motion.ul className="absolute top-20 bg-amber-50 mx-auto right-5 left-5 rounded-xl p-2"
-      initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}>
+      <ul className="suggestions-list absolute top-20 bg-amber-50 mx-auto right-5 left-5 rounded-xl p-2"
+   >
         {suggestions.slice(0,10).map((s,i) => (
-          <motion.li key={i} onClick={() => handleSuggestionClick(s.name)}
-          className="" 
-          initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: i * 0.03 }}>{s.name} , {s.region}, {s.country} <hr  className="text-black h-1 mt-2"/></motion.li>
+          <li key={i} style={{ "--i": i }} onClick={() => handleSuggestionClick(s.name)}
+          className="suggestion-item" 
+         
+                transition={{ delay: i * 0.03 }}>{s.name} , {s.region}, {s.country} <hr  className="text-black h-1 mt-2"/></li>
           
         ))}
-      </motion.ul>
-    )} </AnimatePresence>
+      </ul>
+    )} 
    </div>
   );
 };

@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import Forecast from "./Forecast";
 import { useWeather } from "../WeatherContext";
-import { motion } from "framer-motion";
+import { FaSpinner } from "react-icons/fa";
 
 const Home = () => {
   const { weather, city, error } = useWeather();
@@ -14,35 +13,22 @@ const Home = () => {
 
   return (
     <div className="max-w-[450px] bg-gradient-to-b from-[rgba(40,57,209,0.85)] via-[rgba(68,167,216,0.54)] to-[rgb(64,0,255)] backdrop-blur-md h-[100dvh] overflow-y-auto mx-auto pb-[120px]">
-      <div
-        className="text-black text-center pt-5 "
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-      >
+      <div className="text-black text-center pt-5 ">
         {error ? (
-          <motion.p
-            className="text-red-500 text-2xl mt-10"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <p
+            className="text-red-500 text-2xl mt-10 form-once"
+            style={{ animationDelay: "0s" }}
           >
             {error}
-          </motion.p>
+          </p>
         ) : weather ? (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.p
-              className="text-2xl font-bold pb-2"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+          <div className="scale-fade">
+            <p
+              className="text-2xl font-bold pb-2 form-once"
+              style={{ animationDelay: "0s" }}
             >
               {city}
-            </motion.p>
+            </p>
             <p>
               {now.toLocaleDateString("en-IN", {
                 day: "2-digit",
@@ -52,27 +38,26 @@ const Home = () => {
             </p>
 
             <div className="flex flex-row gap-5 justify-center mt-5">
-              <p className="font-medium  rounded-lg py-2 px-4 bg-white/10 shadow-lg p-3 text-center">Forecast</p>
-              <p className="font-medium rounded-lg py-2 px-4 bg-white/10 shadow-lg p-3 text-center">Tempreture</p>
+              <p className="font-medium  rounded-lg py-2 px-4 bg-white/10 shadow-lg p-3 text-center">
+                Forecast
+              </p>
+              <p className="font-medium rounded-lg py-2 px-4 bg-white/10 shadow-lg p-3 text-center">
+                Tempreture
+              </p>
             </div>
 
             <div className="px-5">
-              <motion.img
+              <img
                 src={
                   weatherImages[weather.current.condition.code] ||
                   weather.current.condition.icon
                 }
                 alt="Weather"
-                className="w-40 h-40 mx-auto"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.5 }}
+                className="w-40 h-40 mx-auto scale-in"
               />
-              <motion.div
-                className="flex place-content-around mx-5 mt-9 text-sm"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
+              <div
+                className="flex place-content-around mx-5 mt-9 text-sm input-once"
+                style={{ animationDuration: "0.5s" }}
               >
                 <p>
                   Temp <br />
@@ -92,7 +77,7 @@ const Home = () => {
                     {weather.current.wind_kph}Km/h
                   </span>
                 </p>
-              </motion.div>
+              </div>
               <div className="flex place-content-between mx-5 my-10 ">
                 <p className="text-2xl font-bold">Today</p>
                 <p
@@ -116,20 +101,10 @@ const Home = () => {
                   );
 
                   return next24Hours.map((hour, i) => (
-                    <motion.div
-                      custom={i}
-                      initial={{ opacity: 0, x: 30 }}
-                      animate={{
-                        opacity: 1,
-                        x: 0,
-                        transition: {
-                          delay: i * 0.05,
-                          duration: 0.4,
-                          ease: "easeOut",
-                        },
-                      }}
+                    <div
+                      style={{ "--i": i }}
                       key={i}
-                      className="min-w-[100px] bg-white/10 border border-white/20 rounded-xl shadow-lg p-3 text-center"
+                      className="hour-card min-w-[100px] bg-white/10 border border-white/20 rounded-xl shadow-lg p-3 text-center"
                     >
                       <p className="text-medium">{hour.time.split(" ")[1]}</p>
                       <img
@@ -138,22 +113,18 @@ const Home = () => {
                         className="mx-auto"
                       />
                       <p className="font-semibold">{hour.temp_c}°C</p>
-                    </motion.div>
+                    </div>
                   ));
                 })()}
               </div>
               <div></div>
             </div>
-          </motion.div>
+          </div>
         ) : (
-          <motion.p
-            className="text-white mt-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
+          <p className="text-white mt-10 flex items-center justify-center">
+            <FaSpinner className="animate-spin text-3xl mr-2" />
             Loading...
-          </motion.p>
+          </p>
         )}
       </div>
     </div>
